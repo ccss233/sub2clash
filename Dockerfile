@@ -6,6 +6,8 @@ RUN go mod download
 ARG version
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w -X sub2clash/constant.Version=${version}" -o sub2clash .
 
+EXPOSE 3000
+
 FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/sub2clash /app/sub2clash
